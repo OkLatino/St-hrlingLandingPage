@@ -22,6 +22,8 @@
             line-height: 1.6;
             color: #333;
             background: #000;
+            /* Se ha corregido el problema de desbordamiento horizontal */
+            overflow-x: hidden;
         }
 
         :root {
@@ -52,7 +54,8 @@
         .hero-section > .hero-video-container { order: 1; }
 
         .hero-content {
-            padding: 80px 40px;
+            /* Se ha ajustado el padding para evitar desbordamiento en móviles */
+            padding: 80px 20px;
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -659,6 +662,7 @@
             }
 
             .hero-content {
+                /* Se ha ajustado el padding para evitar desbordamiento en móviles */
                 padding: 40px 20px;
             }
             
