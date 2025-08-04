@@ -3,7 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Únete a Stührling - Campaña de Influencers</title>
+    <title>Campaña de Influencers - Stührling</title>
+    <!-- Font Inter from Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+    <!-- Iconos de Feather Icons -->
+    <script src="https://unpkg.com/feather-icons"></script>
     <style>
         * {
             margin: 0;
@@ -12,7 +18,7 @@
         }
 
         body {
-            font-family: 'Arial', sans-serif;
+            font-family: 'Inter', sans-serif; /* Usando Inter como font-family */
             line-height: 1.6;
             color: #333;
             background: #000;
@@ -22,6 +28,7 @@
             --stuhrling-orange: #ff6b35;
             --stuhrling-dark-orange: #e55a2b;
             --stuhrling-light-orange: #ff8c69;
+            --stuhrling-gray: #f8f8f8;
         }
 
         .container {
@@ -30,387 +37,145 @@
             padding: 0 20px;
         }
 
-        /* Header */
-        .header {
-            background: linear-gradient(135deg, #000 0%, #1a1a1a 100%);
+        /* Hero Section */
+        .hero-section {
+            display: grid;
+            grid-template-columns: 1fr;
+            min-height: 100vh;
             color: #fff;
-            padding: 80px 0 120px;
+            position: relative;
+            background: #000;
+        }
+
+        .hero-content {
+            padding: 80px 40px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
             text-align: center;
+            position: relative;
+            z-index: 2; /* Asegura que el contenido esté sobre el video en móviles */
+        }
+
+        .hero-video-container {
             position: relative;
             overflow: hidden;
         }
 
-        .header::before {
+        .hero-video-container video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+        
+        .hero-video-container::before {
             content: '';
             position: absolute;
             top: 0;
             left: 0;
             right: 0;
             bottom: 0;
-            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grid" width="10" height="10" patternUnits="userSpaceOnUse"><path d="M 10 0 L 0 0 0 10" fill="none" stroke="%23333" stroke-width="0.5"/></pattern></defs><rect width="100" height="100" fill="url(%23grid)"/></svg>');
-            opacity: 0.1;
+            background: rgba(0, 0, 0, 0.4);
+            z-index: 1;
         }
 
+
+        /* Desktop Hero Layout */
+        @media (min-width: 769px) {
+            .hero-section {
+                grid-template-columns: 1fr 1fr;
+                min-height: 100vh;
+            }
+
+            .hero-content {
+                background: linear-gradient(135deg, #000 0%, #1a1a1a 100%);
+                text-align: left;
+                align-items: flex-start;
+                padding: 0 80px;
+            }
+
+            .hero-video-container {
+                position: absolute;
+                top: 0;
+                right: 0;
+                width: 50%;
+                height: 100%;
+            }
+
+            .hero-video-container::before {
+                display: none; /* No overlay on desktop as text is separate */
+            }
+        }
+        
         .logo {
-            font-size: 2.5rem;
+            font-size: 2.8rem;
             font-weight: bold;
-            letter-spacing: 3px;
-            margin-bottom: 20px;
-            position: relative;
-            z-index: 1;
+            letter-spacing: 4px;
+            margin-bottom: 30px;
             color: var(--stuhrling-orange);
             text-shadow: 0 0 20px rgba(255, 107, 53, 0.3);
+            position: relative;
+            z-index: 2;
         }
 
         .hero-title {
-            font-size: 3.5rem;
+            font-size: 3.8rem;
             font-weight: bold;
-            margin-bottom: 20px;
-            background: linear-gradient(45deg, #fff, var(--stuhrling-orange));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+            margin-bottom: 25px;
+            color: #fff; /* Título en color blanco sólido */
+            text-transform: uppercase;
+            letter-spacing: 2px;
             position: relative;
-            z-index: 1;
+            z-index: 2;
         }
 
         .hero-subtitle {
-            font-size: 1.3rem;
-            margin-bottom: 30px;
+            font-size: 1.4rem;
+            margin-bottom: 40px;
             opacity: 0.9;
             position: relative;
-            z-index: 1;
+            z-index: 2;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        @media (min-width: 769px) {
+            .hero-subtitle {
+                margin-left: 0;
+                margin-right: 0;
+            }
         }
 
         .cta-button {
             display: inline-block;
-            padding: 18px 40px;
+            padding: 20px 50px;
             background: linear-gradient(45deg, var(--stuhrling-orange), var(--stuhrling-dark-orange));
             color: #fff;
             text-decoration: none;
             border-radius: 50px;
             font-weight: bold;
-            font-size: 1.1rem;
+            font-size: 1.2rem;
             transition: all 0.3s ease;
             position: relative;
-            z-index: 1;
-            box-shadow: 0 10px 30px rgba(255, 107, 53, 0.3);
+            z-index: 2;
+            box-shadow: 0 15px 40px rgba(255, 107, 53, 0.3);
             text-transform: uppercase;
-            letter-spacing: 1px;
+            letter-spacing: 2px;
         }
 
         .cta-button:hover {
             transform: translateY(-3px);
-            box-shadow: 0 15px 40px rgba(255, 107, 53, 0.4);
+            box-shadow: 0 20px 50px rgba(255, 107, 53, 0.4);
             background: linear-gradient(45deg, var(--stuhrling-dark-orange), var(--stuhrling-orange));
-        }
-
-        /* Benefits Section */
-        .benefits {
-            background: #fff;
-            padding: 100px 0;
-        }
-
-        .section-title {
-            font-size: 2.8rem;
-            text-align: center;
-            margin-bottom: 60px;
-            color: #000;
-            font-weight: bold;
-            position: relative;
-        }
-
-        .section-title::after {
-            content: '';
-            position: absolute;
-            bottom: -10px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 80px;
-            height: 3px;
-            background: linear-gradient(45deg, var(--stuhrling-orange), var(--stuhrling-dark-orange));
-            border-radius: 2px;
-        }
-
-        .benefits-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 40px;
-            margin-bottom: 60px;
-        }
-
-        .benefit-card {
-            background: linear-gradient(135deg, #f8f8f8 0%, #fff 100%);
-            padding: 40px 30px;
-            border-radius: 20px;
-            text-align: center;
-            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
-            transition: all 0.3s ease;
-            border: 1px solid #eee;
-        }
-
-        .benefit-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 25px 50px rgba(0,0,0,0.15);
-        }
-
-        .benefit-icon {
-            font-size: 3rem;
-            margin-bottom: 20px;
-            color: var(--stuhrling-orange);
-            filter: drop-shadow(0 0 10px rgba(255, 107, 53, 0.3));
-        }
-
-        .benefit-title {
-            font-size: 1.5rem;
-            font-weight: bold;
-            margin-bottom: 15px;
-            color: #000;
-        }
-
-        .benefit-description {
-            color: #666;
-            line-height: 1.6;
-        }
-
-        /* Requirements Section */
-        .requirements {
-            background: linear-gradient(135deg, #1a1a1a 0%, #000 100%);
-            color: #fff;
-            padding: 100px 0;
-        }
-
-        .section-title{
-            color: #ffff;
-        }
-
-        .req-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 30px;
-            margin-top: 50px;
-        }
-
-        .req-item {
-            background: rgba(255,255,255,0.05);
-            padding: 30px 25px;
-            border-radius: 15px;
-            border: 1px solid rgba(255,255,255,0.1);
-            transition: all 0.3s ease;
-        }
-
-        .req-item:hover {
-            background: rgba(255,255,255,0.08);
-            border-color: rgba(255,255,255,0.2);
-        }
-
-        .req-icon {
-            font-size: 2.5rem;
-            margin-bottom: 15px;
-            color: var(--stuhrling-orange);
-            filter: drop-shadow(0 0 10px rgba(255, 107, 53, 0.3));
-        }
-
-        .req-title {
-            font-size: 1.2rem;
-            font-weight: bold;
-            margin-bottom: 10px;
-        }
-
-        .req-description {
-            opacity: 0.8;
-            font-size: 0.95rem;
-        }
-
-        /* Form Section */
-        .form-section {
-            background: #fff;
-            padding: 100px 0;
-        }
-
-        .form-container {
-            max-width: 800px;
-            margin: 0 auto;
-            background: linear-gradient(135deg, #f8f8f8 0%, #fff 100%);
-            padding: 60px 50px;
-            border-radius: 25px;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.1);
-        }
-
-        .form-title {
-            font-size: 2.2rem;
-            text-align: center;
-            margin-bottom: 40px;
-            color: #000;
-            font-weight: bold;
-        }
-
-        .form-group {
-            margin-bottom: 25px;
-        }
-
-        .form-label {
-            display: block;
-            margin-bottom: 8px;
-            font-weight: bold;
-            color: #333;
-        }
-
-        .form-input, .form-textarea, .form-select {
-            width: 100%;
-            padding: 15px 20px;
-            border: 2px solid #eee;
-            border-radius: 12px;
-            font-size: 1rem;
-            transition: all 0.3s ease;
-            background: #fff;
-        }
-
-        .form-input:focus, .form-textarea:focus, .form-select:focus {
-            outline: none;
-            border-color: var(--stuhrling-orange);
-            box-shadow: 0 0 0 3px rgba(255, 107, 53, 0.1);
-        }
-
-        .form-textarea {
-            height: 120px;
-            resize: vertical;
-        }
-
-        .form-row {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 20px;
-        }
-
-        .submit-button {
-            width: 100%;
-            padding: 20px;
-            background: linear-gradient(45deg, var(--stuhrling-orange), var(--stuhrling-dark-orange));
-            color: #fff;
-            border: none;
-            border-radius: 12px;
-            font-size: 1.2rem;
-            font-weight: bold;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            margin-top: 20px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        .submit-button:hover {
-            background: linear-gradient(45deg, var(--stuhrling-dark-orange), var(--stuhrling-orange));
-            transform: translateY(-2px);
-            box-shadow: 0 10px 30px rgba(255, 107, 53, 0.4);
-        }
-
-        /* Testimonials */
-        .testimonials {
-            background: linear-gradient(135deg, #f8f8f8 0%, #fff 100%);
-            padding: 100px 0;
-        }
-
-        .testimonial-card {
-            background: #fff;
-            padding: 40px;
-            border-radius: 20px;
-            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
-            text-align: center;
-            max-width: 600px;
-            margin: 0 auto;
-        }
-
-        .testimonial-text {
-            font-size: 1.3rem;
-            font-style: italic;
-            margin-bottom: 20px;
-            color: #333;
-        }
-
-        .testimonial-author {
-            font-weight: bold;
-            color: #000;
-        }
-
-        /* Footer */
-        .footer {
-            background: #000;
-            color: #fff;
-            padding: 60px 0;
-            text-align: center;
-        }
-
-        .footer-content {
-            margin-bottom: 30px;
-        }
-
-        .footer-logo {
-            font-size: 2rem;
-            font-weight: bold;
-            letter-spacing: 2px;
-            margin-bottom: 15px;
-            color: var(--stuhrling-orange);
-        }
-
-        .footer-text {
-            opacity: 0.8;
-        }
-
-        /* Responsive */
-        @media (max-width: 768px) {
-            .hero-title {
-                font-size: 2.5rem;
-            }
-            
-            .hero-subtitle {
-                font-size: 1.1rem;
-            }
-            
-            .form-container {
-                padding: 40px 30px;
-            }
-            
-            .form-row {
-                grid-template-columns: 1fr;
-            }
-            
-            .section-title {
-                font-size: 2.2rem;
-            }
-        }
-
-        /* Animations */
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .benefit-card, .req-item {
-            animation: fadeInUp 0.6s ease forwards;
-        }
-
-        /* Success message styles */
-        .success-message {
-            background: linear-gradient(45deg, #28a745, #20c997);
-            color: white;
-            padding: 20px;
-            border-radius: 12px;
-            text-align: center;
-            margin-top: 20px;
-            display: none;
         }
 
         /* Watch showcase styles */
         .watch-showcase {
             background: linear-gradient(135deg, #1a1a1a 0%, #000 100%);
-            padding: 80px 0;
+            padding: 100px 0;
             position: relative;
             overflow: hidden;
         }
@@ -429,7 +194,7 @@
             display: grid;
             grid-template-columns: 1fr 1fr;
             align-items: center;
-            gap: 60px;
+            gap: 80px;
             position: relative;
             z-index: 1;
         }
@@ -453,75 +218,123 @@
         }
 
         .watch-title {
-            font-size: 3rem;
+            font-size: 3.5rem;
             font-weight: bold;
             margin-bottom: 20px;
             color: var(--stuhrling-orange);
             text-shadow: 0 0 20px rgba(255, 107, 53, 0.3);
+            text-transform: uppercase;
+            letter-spacing: 3px;
         }
 
         .watch-subtitle {
-            font-size: 1.5rem;
-            margin-bottom: 25px;
+            font-size: 1.8rem;
+            margin-bottom: 30px;
             opacity: 0.9;
+            text-transform: uppercase;
+            letter-spacing: 2px;
         }
 
         .watch-description {
-            font-size: 1.1rem;
+            font-size: 1.2rem;
             line-height: 1.8;
-            opacity: 0.8;
+            opacity: 0.9;
         }
 
-        /* Statistics section */
-        .stats-section {
-            background: linear-gradient(135deg, #f8f8f8 0%, #fff 100%);
+        /* Convocatoria Section */
+        .convocatoria-section {
+            background: #fff;
             padding: 100px 0;
         }
 
-        .stats-container {
-            max-width: 1000px;
-            margin: 0 auto;
-        }
-
-        .stats-intro {
+        .section-title {
+            font-size: 3rem;
             text-align: center;
             margin-bottom: 60px;
-        }
-
-        .stats-intro h2 {
-            font-size: 2.5rem;
-            font-weight: bold;
-            margin-bottom: 20px;
             color: #000;
+            font-weight: bold;
+            position: relative;
+            text-transform: uppercase;
+            letter-spacing: 2px;
         }
 
-        .stats-intro p {
-            font-size: 1.2rem;
-            color: #666;
-            max-width: 600px;
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 4px;
+            background: linear-gradient(45deg, var(--stuhrling-orange), var(--stuhrling-dark-orange));
+            border-radius: 2px;
+        }
+
+        .convocatoria-content {
+            max-width: 800px;
             margin: 0 auto;
-        }
-
-        .stats-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 30px;
-            margin-bottom: 50px;
-        }
-
-        .stat-card {
-            background: #fff;
-            padding: 30px 25px;
-            border-radius: 15px;
             text-align: center;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-            border: 2px solid transparent;
+        }
+
+        .convocatoria-question {
+            font-size: 2rem;
+            font-weight: bold;
+            color: var(--stuhrling-orange);
+            margin-bottom: 30px;
+            text-transform: uppercase;
+        }
+
+        .convocatoria-description {
+            font-size: 1.3rem;
+            color: #333;
+            line-height: 1.8;
+            margin-bottom: 40px;
+        }
+
+        .convocatoria-highlight {
+            background: linear-gradient(135deg, var(--stuhrling-gray) 0%, #fff 100%);
+            padding: 30px;
+            border-radius: 15px;
+            border-left: 4px solid var(--stuhrling-orange);
+            margin-top: 30px;
+        }
+
+        .convocatoria-highlight p {
+            font-size: 1.1rem;
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        /* Requirements Section */
+        .requirements {
+            background: linear-gradient(135deg, #1a1a1a 0%, #000 100%);
+            color: #fff;
+            padding: 100px 0;
+        }
+
+        .requirements .section-title {
+            color: #fff;
+        }
+
+        .criterios-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 40px;
+            margin-top: 60px;
+        }
+
+        .criterio-card {
+            background: rgba(255,255,255,0.05);
+            padding: 40px 30px;
+            border-radius: 20px;
+            border: 1px solid rgba(255,255,255,0.1);
             transition: all 0.3s ease;
+            text-align: center;
             position: relative;
             overflow: hidden;
         }
 
-        .stat-card::before {
+        .criterio-card::before {
             content: '';
             position: absolute;
             top: 0;
@@ -531,111 +344,372 @@
             background: linear-gradient(45deg, var(--stuhrling-orange), var(--stuhrling-dark-orange));
         }
 
-        .stat-card:hover {
-            transform: translateY(-5px);
+        .criterio-card:hover {
+            background: rgba(255,255,255,0.08);
             border-color: var(--stuhrling-orange);
-            box-shadow: 0 20px 40px rgba(255, 107, 53, 0.2);
+            transform: translateY(-5px);
         }
 
-        .stat-number {
-            font-size: 2.5rem;
+        .criterio-icon {
+            margin-bottom: 20px;
+            color: var(--stuhrling-orange);
+            filter: drop-shadow(0 0 10px rgba(255, 107, 53, 0.3));
+        }
+
+        .criterio-title {
+            font-size: 1.4rem;
+            font-weight: bold;
+            margin-bottom: 15px;
+            color: var(--stuhrling-orange);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .criterio-description {
+            opacity: 0.9;
+            font-size: 1rem;
+            line-height: 1.6;
+        }
+
+        /* Benefits Section */
+        .benefits {
+            background: linear-gradient(135deg, var(--stuhrling-gray) 0%, #fff 100%);
+            padding: 100px 0;
+        }
+
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 40px;
+            margin-top: 60px;
+        }
+
+        .benefit-card {
+            background: #fff;
+            padding: 50px 40px;
+            border-radius: 25px;
+            text-align: center;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .benefit-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: linear-gradient(45deg, var(--stuhrling-orange), var(--stuhrling-dark-orange));
+        }
+
+        .benefit-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 30px 70px rgba(255, 107, 53, 0.2);
+            border-color: var(--stuhrling-orange);
+        }
+
+        .benefit-icon {
+            margin-bottom: 25px;
+            color: var(--stuhrling-orange);
+            filter: drop-shadow(0 0 15px rgba(255, 107, 53, 0.3));
+        }
+
+        .benefit-title {
+            font-size: 1.6rem;
+            font-weight: bold;
+            margin-bottom: 20px;
+            color: #000;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .benefit-amount {
+            font-size: 2.2rem;
             font-weight: bold;
             color: var(--stuhrling-orange);
-            margin-bottom: 10px;
-            display: block;
+            margin-bottom: 15px;
         }
 
-        .stat-label {
-            font-size: 1rem;
+        .benefit-description {
+            color: #666;
+            line-height: 1.7;
+            font-size: 1.1rem;
+        }
+
+        /* Form Section */
+        .form-section {
+            background: #fff;
+            padding: 100px 0;
+        }
+
+        .form-container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: linear-gradient(135deg, var(--stuhrling-gray) 0%, #fff 100%);
+            padding: 70px 60px;
+            border-radius: 30px;
+            box-shadow: 0 25px 80px rgba(0,0,0,0.1);
+            border: 2px solid #eee;
+        }
+
+        .form-title {
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 50px;
+            color: #000;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .form-group {
+            margin-bottom: 30px;
+        }
+
+        .form-label {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+            font-weight: bold;
             color: #333;
+            font-size: 1.1rem;
+        }
+
+        .social-logo {
+            width: 24px;
+            height: 24px;
+            margin-right: 8px;
+            color: var(--stuhrling-orange);
+            transition: all 0.3s ease;
+            flex-shrink: 0;
+        }
+
+        .form-label:hover .social-logo {
+            transform: scale(1.1);
+            color: var(--stuhrling-dark-orange);
+        }
+
+        .form-input, .form-textarea, .form-select {
+            width: 100%;
+            padding: 18px 25px;
+            border: 2px solid #eee;
+            border-radius: 15px;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            background: #fff;
+        }
+
+        .form-input:focus, .form-textarea:focus, .form-select:focus {
+            outline: none;
+            border-color: var(--stuhrling-orange);
+            box-shadow: 0 0 0 4px rgba(255, 107, 53, 0.1);
+        }
+
+        .form-textarea {
+            height: 140px;
+            resize: vertical;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 25px;
+        }
+
+        .submit-button {
+            width: 100%;
+            padding: 25px;
+            background: linear-gradient(45deg, var(--stuhrling-orange), var(--stuhrling-dark-orange));
+            color: #fff;
+            border: none;
+            border-radius: 15px;
+            font-size: 1.3rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 30px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .submit-button:hover {
+            background: linear-gradient(45deg, var(--stuhrling-dark-orange), var(--stuhrling-orange));
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(255, 107, 53, 0.4);
+        }
+
+        /* Esquema de Pago Section */
+        .pago-section {
+            background: linear-gradient(135deg, #1a1a1a 0%, #000 100%);
+            color: #fff;
+            padding: 100px 0;
+        }
+
+        .pago-section .section-title {
+            color: #fff;
+        }
+
+        .pago-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .pago-card {
+            background: rgba(255,255,255,0.05);
+            padding: 50px 40px;
+            border-radius: 25px;
+            border: 2px solid rgba(255, 107, 53, 0.3);
+            margin-bottom: 40px;
+        }
+
+        .pago-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .pago-item:last-child {
+            border-bottom: none;
+        }
+
+        .pago-concepto {
+            font-size: 1.2rem;
             font-weight: 500;
         }
 
-        .interactive-table {
-            background: #fff;
-            border-radius: 20px;
-            overflow: hidden;
-            box-shadow: 0 20px 50px rgba(0,0,0,0.1);
-            margin-top: 40px;
-        }
-
-        .table-header {
-            background: linear-gradient(45deg, var(--stuhrling-orange), var(--stuhrling-dark-orange));
-            color: #fff;
-            padding: 25px;
-            text-align: center;
-        }
-
-        .table-header h3 {
+        .pago-monto {
             font-size: 1.5rem;
             font-weight: bold;
-            margin-bottom: 10px;
-        }
-
-        .table-content {
-            padding: 30px;
-        }
-
-        .comparison-table {
-            width: 100%;
-            border-collapse: collapse;
-        }
-
-        .comparison-table th,
-        .comparison-table td {
-            padding: 15px;
-            text-align: center;
-            border-bottom: 1px solid #eee;
-        }
-
-        .comparison-table th {
-            background: #f8f8f8;
-            font-weight: bold;
-            color: #333;
-        }
-
-        .comparison-table tr:hover {
-            background: rgba(255, 107, 53, 0.05);
-        }
-
-        .highlight-row {
-            background: rgba(255, 107, 53, 0.1) !important;
-            font-weight: bold;
-        }
-
-        .highlight-row td {
             color: var(--stuhrling-orange);
         }
 
+        .incentivo-especial {
+            background: rgba(255, 107, 53, 0.1);
+            padding: 40px;
+            border-radius: 20px;
+            border: 2px solid var(--stuhrling-orange);
+            text-align: center;
+        }
+
+        .incentivo-title {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: var(--stuhrling-orange);
+            margin-bottom: 20px;
+            text-transform: uppercase;
+        }
+
+        /* Footer */
+        .footer {
+            background: #000;
+            color: #fff;
+            padding: 80px 0;
+            text-align: center;
+        }
+
+        .footer-logo {
+            font-size: 2.5rem;
+            font-weight: bold;
+            letter-spacing: 3px;
+            margin-bottom: 20px;
+            color: var(--stuhrling-orange);
+        }
+
+        .footer-text {
+            opacity: 0.8;
+            font-size: 1.1rem;
+        }
+
+        /* Success message */
+        .success-message {
+            background: linear-gradient(45deg, #28a745, #20c997);
+            color: white;
+            padding: 25px;
+            border-radius: 15px;
+            text-align: center;
+            margin-top: 25px;
+            display: none;
+            font-size: 1.1rem;
+        }
+
+        /* Responsive */
         @media (max-width: 768px) {
+            .hero-title {
+                font-size: 2.8rem;
+            }
+            
+            .hero-subtitle {
+                font-size: 1.2rem;
+            }
+            
+            .form-container {
+                padding: 50px 30px;
+            }
+            
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+            
+            .section-title {
+                font-size: 2.2rem;
+            }
+            
             .watch-container {
                 grid-template-columns: 1fr;
                 text-align: center;
             }
             
             .watch-title {
-                font-size: 2.2rem;
+                font-size: 2.5rem;
             }
             
-            .stats-grid {
-                grid-template-columns: repeat(2, 1fr);
+            .criterios-grid {
+                grid-template-columns: 1fr;
             }
             
-            .comparison-table {
-                font-size: 0.9rem;
+            .benefits-grid {
+                grid-template-columns: 1fr;
             }
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .benefit-card, .criterio-card {
+            animation: fadeInUp 0.6s ease forwards;
         }
     </style>
 </head>
 <body>
-    <!-- Header -->
-    <section class="header">
-        <div class="container">
+    <!-- Hero Section with split layout on desktop -->
+    <section class="hero-section">
+        <div class="hero-content">
             <div class="logo">STÜHRLING</div>
-            <h1 class="hero-title">Únete a Nuestra Elite</h1>
-            <p class="hero-subtitle">Colabora con la marca de relojes de lujo más exclusiva de México<br>
-            Gana hasta <strong>$1,000 MXN</strong> por video + posible regalo de reloj</p>
-            <a href="#formulario" class="cta-button">Aplicar Ahora</a>
+            <h1 class="hero-title">Campaña de Influencers</h1>
+            <p class="hero-subtitle">¿Eres creador de contenido apasionado por el estilo?<br>
+            Stührling busca influencers con presencia, carisma y buen gusto para colaborar con una marca de relojes de lujo accesible.</p>
+            <a href="#formulario" class="cta-button">Enviar Solicitud</a>
+        </div>
+        <div class="hero-video-container">
+            <!-- Tu video original con la ruta intacta -->
+            <video id="heroVideo" muted playsinline preload="metadata" src="assets\stuhrlingHero1.mp4">
+                <!-- Fallback para navegadores que no soporten el video -->
+            </video>
         </div>
     </section>
 
@@ -644,13 +718,11 @@
         <div class="container">
             <div class="watch-container">
                 <div class="watch-content">
-                    <h2 class="watch-title">ÉLITE</h2>
-                    <h3 class="watch-subtitle">CÍRCULO EXCLUSIVO</h3>
+                    <h2 class="watch-title">Élite</h2>
+                    <h3 class="watch-subtitle">Círculo Exclusivo</h3>
                     <p class="watch-description">
                         Solo unos pocos elegidos tienen el privilegio de representar la excelencia de Stührling. 
-                        Buscamos creadores de élite que comprendan el verdadero significado del lujo suizo y la distinción. 
-                        Si posees la sofisticación, el carisma y la visión que nuestros estándares demandan, 
-                        esta es tu oportunidad de trascender y formar parte de un legado que pocos pueden alcanzar.
+                        Buscamos creadores de élite que comprendan el verdadero significado del lujo suizo y la distinción.
                         <br><br>
                         <strong style="color: var(--stuhrling-orange);">
                         ¿Tienes lo necesario para ser parte de la élite Stührling?
@@ -658,71 +730,123 @@
                     </p>
                 </div>
                 <div>
+                    <!-- Tu imagen original con la ruta intacta -->
                     <img src="assets\relojstur.jpg"
-                         alt="Stührling Vanguard Swiss 1019" 
+                         alt="Stührling Reloj de Lujo" 
                          class="watch-image">
                 </div>
             </div>
         </div>
     </section>
-    <section class="benefits">
+
+    <!-- Convocatoria Section -->
+    <section class="convocatoria-section">
         <div class="container">
-            <h2 class="section-title">¿Por Qué Elegir Stührling?</h2>
-            <div class="benefits-grid">
-                <div class="benefit-card">
-                    <div class="benefit-icon">💰</div>
-                    <h3 class="benefit-title">Pago Garantizado</h3>
-                    <p class="benefit-description">$200 MXN base por video aprobado + bono de $800 MXN adicionales al alcanzar la meta de vistas orgánicas</p>
-                </div>
-                <div class="benefit-card">
-                    <div class="benefit-icon">⌚</div>
-                    <h3 class="benefit-title">Producto Premium</h3>
-                    <p class="benefit-description">Posibilidad de recibir un reloj Stührling sin costo para influencers con +100k seguidores y buen desempeño</p>
-                </div>
-                <div class="benefit-card">
-                    <div class="benefit-icon">🌟</div>
-                    <h3 class="benefit-title">Embajador de Marca</h3>
-                    <p class="benefit-description">Oportunidades exclusivas futuras como embajador oficial de una marca de lujo reconocida internacionalmente</p>
+            <h2 class="section-title">Convocatoria de Influencers</h2>
+            <div class="convocatoria-content">
+                <h3 class="convocatoria-question">¿Eres creador de contenido apasionado por el estilo?</h3>
+                <p class="convocatoria-description">
+                    Stührling busca influencers con presencia, carisma y buen gusto. Si tienes una comunidad activa 
+                    y te interesa colaborar con una marca de relojes de lujo accesible, esta es tu oportunidad.
+                </p>
+                <div class="convocatoria-highlight">
+                    <p><strong>• Envíanos tu perfil, estadísticas y estilo de contenido</strong></p>
+                    <p><strong>• Participa por una colaboración pagada y posible envío de producto</strong></p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Requirements -->
+    <!-- Requirements Section -->
     <section class="requirements">
         <div class="container">
-            <h2 class="section-title">¿Cumples con el Perfil?</h2>
-            <div class="req-grid">
-                <div class="req-item">
-                    <div class="req-icon">📱</div>
-                    <h3 class="req-title">Seguidores</h3>
-                    <p class="req-description">Preferencia +20k seguidores, prioridad +100k</p>
+            <h2 class="section-title">Criterios de Selección</h2>
+            <div class="criterios-grid">
+                <div class="criterio-card">
+                    <!-- Icono de usuarios reemplazado con SVG -->
+                    <svg class="criterio-icon" xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-users"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87m-4-12a4 4 0 0 1 0 7.75"></path></svg>
+                    <h3 class="criterio-title">Seguidores</h3>
+                    <p class="criterio-description">Preferencia a cuentas con +20k seguidores, con prioridad a quienes superen los 100k seguidores</p>
                 </div>
-                <div class="req-item">
-                    <div class="req-icon">🎨</div>
-                    <h3 class="req-title">Estilo Premium</h3>
-                    <p class="req-description">Estética de lujo, carisma en cámara, lifestyle y moda</p>
+                <div class="criterio-card">
+                    <!-- Icono de estilo reemplazado con SVG -->
+                    <svg class="criterio-icon" xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-edit"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path></svg>
+                    <h3 class="criterio-title">Estilo de Contenido</h3>
+                    <p class="criterio-description">Valoramos estética premium, carisma en cámara, enfoque en lifestyle, moda, lujo accesible o tecnología</p>
                 </div>
-                <div class="req-item">
-                    <div class="req-icon">📊</div>
-                    <h3 class="req-title">Engagement</h3>
-                    <p class="req-description">Buena tasa de interacción y promedio de vistas consistente</p>
+                <div class="criterio-card">
+                    <!-- Icono de estadísticas reemplazado con SVG -->
+                    <svg class="criterio-icon" xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-bar-chart-2"><line x1="18" y1="20" x2="18" y2="10"></line><line x1="12" y1="20" x2="12" y2="4"></line><line x1="6" y1="20" x2="6" y2="14"></line></svg>
+                    <h3 class="criterio-title">Estadísticas</h3>
+                    <p class="criterio-description">Tasa de interacción, promedio de vistas por video, constancia en publicaciones</p>
                 </div>
-                <div class="req-item">
-                    <div class="req-icon">🎬</div>
-                    <h3 class="req-title">Plataformas</h3>
-                    <p class="req-description">TikTok, Instagram Reels, YouTube Shorts</p>
+                <div class="criterio-card">
+                    <!-- Icono de plataformas reemplazado con SVG -->
+                    <svg class="criterio-icon" xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-globe"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>
+                    <h3 class="criterio-title">Plataformas</h3>
+                    <p class="criterio-description">TikTok, Instagram Reels, YouTube Shorts son nuestras plataformas preferidas</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Testimonial -->
-    <section class="testimonials">
+    <!-- Benefits Section -->
+    <section class="benefits">
         <div class="container">
-            <div class="testimonial-card">
-                <p class="testimonial-text">"Stührling es una marca que crea relojes elegantes y refinados que reflejan lujo. Ser propietario de un reloj Stührling es una verdadera expresión de estilo y clase."</p>
-                <p class="testimonial-author">— Stührling Official</p>
+            <h2 class="section-title">Beneficios de la Colaboración</h2>
+            <div class="benefits-grid">
+                <div class="benefit-card">
+                    <!-- Icono de pago reemplazado con SVG -->
+                    <svg class="benefit-icon" xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-dollar-sign"><line x1="12" y1="1" x2="12" y2="23"></line><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg>
+                    <h3 class="benefit-title">Pago Base</h3>
+                    <div class="benefit-amount">$200 MXN</div>
+                    <p class="benefit-description">Por video aceptado y aprobado por nuestro equipo de calidad</p>
+                </div>
+                <div class="benefit-card">
+                    <!-- Icono de bono reemplazado con SVG -->
+                    <svg class="benefit-icon" xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-trending-up"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"></polyline><polyline points="17 6 23 6 23 12"></polyline></svg>
+                    <h3 class="benefit-title">Bono por Performance</h3>
+                    <div class="benefit-amount">+$800 MXN</div>
+                    <p class="benefit-description">Si el video alcanza nuestra meta orgánica de vistas (Total: $1,000 MXN)</p>
+                </div>
+                <div class="benefit-card">
+                    <!-- Icono de regalo reemplazado con SVG -->
+                    <svg class="benefit-icon" xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-gift"><polyline points="20 12 20 22 4 22 4 12"></polyline><rect x="2" y="7" width="20" height="5"></rect><line x1="12" y1="22" x2="12" y2="7"></line><path d="M12 7H7.5a2.5 2.5 0 0 1 0-5C11 2 12 7 12 7z"></path><path d="M12 7h4.5a2.5 2.5 0 0 0 0-5C13 2 12 7 12 7z"></path></svg>
+                    <h3 class="benefit-title">Producto Premium</h3>
+                    <div class="benefit-amount">Reloj Gratis</div>
+                    <p class="benefit-description">Para influencers +100k seguidores con métricas consistentes</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Esquema de Pago Section -->
+    <section class="pago-section">
+        <div class="container">
+            <h2 class="section-title">Esquema de Pago</h2>
+            <div class="pago-container">
+                <div class="pago-card">
+                    <div class="pago-item">
+                        <span class="pago-concepto">Pago base por video aprobado</span>
+                        <span class="pago-monto">$200 MXN</span>
+                    </div>
+                    <div class="pago-item">
+                        <span class="pago-concepto">Bono por alcanzar meta de vistas orgánicas</span>
+                        <span class="pago-monto">+$800 MXN</span>
+                    </div>
+                    <div class="pago-item">
+                        <span class="pago-concepto"><strong>Total posible por video</strong></span>
+                        <span class="pago-monto"><strong>$1,000 MXN</strong></span>
+                    </div>
+                </div>
+                
+                <div class="incentivo-especial">
+                    <h3 class="incentivo-title">Incentivo Especial</h3>
+                    <p>Para creadores con más de 100k seguidores: Si sus métricas son consistentes (buen promedio de vistas y engagement), 
+                    se evaluará enviarles un reloj Stührling sin costo como parte de la colaboración.</p>
+                    <br>
+                    <p><strong>Estos influencers serán considerados embajadores de marca con futuras oportunidades exclusivas.</strong></p>
+                </div>
             </div>
         </div>
     </section>
@@ -784,13 +908,51 @@
                     </div>
 
                     <div class="form-group">
-                        <label for="perfil_instagram" class="form-label">URL de Instagram *</label>
+                        <label for="perfil_instagram" class="form-label">
+                            <!-- Icono de Instagram con SVG -->
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="social-logo">
+                                <rect x="2" y="2" width="20" height="20" rx="5" ry="5" stroke="currentColor" stroke-width="2"/>
+                                <circle cx="12" cy="12" r="4" stroke="currentColor" stroke-width="2"/>
+                                <circle cx="18.5" cy="5.5" r="1.5" fill="currentColor"/>
+                            </svg>
+                            URL de Instagram *
+                        </label>
                         <input type="url" id="perfil_instagram" name="perfil_instagram" class="form-input" placeholder="https://instagram.com/tu_usuario" required>
                     </div>
 
                     <div class="form-group">
-                        <label for="perfil_tiktok" class="form-label">URL de TikTok</label>
+                        <label for="perfil_tiktok" class="form-label">
+                            <!-- Icono de TikTok con SVG -->
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="social-logo">
+                                <path d="M12.53.02C13.84 0 15.14.01 16.44 0c.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z" fill="currentColor"/>
+                            </svg>
+                            URL de TikTok
+                        </label>
                         <input type="url" id="perfil_tiktok" name="perfil_tiktok" class="form-input" placeholder="https://tiktok.com/@tu_usuario">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="perfil_youtube" class="form-label">
+                            <!-- Icono de YouTube con SVG -->
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="social-logo">
+                                <path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.33z" fill="currentColor"/>
+                                <polygon points="9.75,15.02 15.5,11.75 9.75,8.48" fill="white"/>
+                            </svg>
+                            URL de YouTube
+                        </label>
+                        <input type="url" id="perfil_youtube" name="perfil_youtube" class="form-input" placeholder="https://youtube.com/@tu_canal">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="otros_perfiles" class="form-label">
+                            <!-- Icono de enlace con SVG -->
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="social-logo">
+                                <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                            Otros Enlaces (opcional)
+                        </label>
+                        <input type="url" id="otros_perfiles" name="otros_perfiles" class="form-input" placeholder="Otros perfiles o sitios web relevantes">
                     </div>
 
                     <div class="form-group">
@@ -838,6 +1000,54 @@
     </section>
 
     <script>
+        // Esta es la sección de JavaScript que controla la funcionalidad de video sincronizado con scroll.
+        const heroVideo = document.getElementById('heroVideo');
+        let videoInitialized = false;
+
+        // Función principal para sincronizar el tiempo del video con la posición del scroll.
+        function syncVideoWithScroll() {
+            // Se verifica que el elemento de video y su duración estén disponibles.
+            if (!heroVideo || !heroVideo.duration) return;
+
+            // Se calcula la posición del scroll actual.
+            const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+            const documentHeight = document.documentElement.scrollHeight - window.innerHeight;
+            
+            // Se mapea la posición de scroll a un valor de 0 a 1.
+            const scrollProgress = Math.min(scrollTop / documentHeight, 1);
+
+            // La duración del video se usa para determinar el punto de reproducción.
+            const videoDuration = heroVideo.duration;
+            // Se limita el "scrubbing" a los primeros 10 segundos del video para un efecto más controlado.
+            const maxVideoTime = Math.min(videoDuration, 10);
+            
+            // Se actualiza el tiempo de reproducción del video.
+            heroVideo.currentTime = scrollProgress * maxVideoTime;
+        }
+
+        // Se inicializa el video una vez que sus metadatos (duración, etc.) están cargados.
+        heroVideo.addEventListener('loadedmetadata', function() {
+            videoInitialized = true;
+            heroVideo.currentTime = 0; // Se asegura de que el video empiece en el segundo 0.
+            console.log('Video inicializado. Duración:', heroVideo.duration);
+        });
+
+        // Se escucha el evento de scroll en la ventana.
+        // Se usa un "throttling" con setTimeout para mejorar el rendimiento,
+        // evitando que la función se ejecute demasiadas veces seguidas.
+        let scrollTimeout;
+        window.addEventListener('scroll', function() {
+            if (scrollTimeout) {
+                clearTimeout(scrollTimeout);
+            }
+            scrollTimeout = setTimeout(syncVideoWithScroll, 16); // Aproximadamente 60fps.
+        });
+
+        // Se llama a la función también al cargar la página para sincronizar la posición inicial.
+        window.addEventListener('load', syncVideoWithScroll);
+
+        // ===== RESTO DEL CÓDIGO =====
+        
         // Smooth scrolling for anchor links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
@@ -852,7 +1062,6 @@
         document.getElementById('influencerForm').addEventListener('submit', function(e) {
             e.preventDefault();
             
-            // Simulate form submission
             const submitButton = document.querySelector('.submit-button');
             const successMessage = document.getElementById('successMessage');
             
@@ -864,7 +1073,6 @@
                 submitButton.textContent = 'Solicitud Enviada';
                 submitButton.style.background = 'linear-gradient(45deg, #28a745, #20c997)';
                 
-                // Scroll to success message
                 successMessage.scrollIntoView({ behavior: 'smooth' });
             }, 2000);
         });
@@ -884,53 +1092,15 @@
             });
         }, observerOptions);
 
-        // Observe all benefit cards and requirement items
-        document.querySelectorAll('.benefit-card, .req-item').forEach(el => {
+        document.querySelectorAll('.benefit-card, .criterio-card').forEach(el => {
             el.style.opacity = '0';
             el.style.transform = 'translateY(30px)';
             el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
             observer.observe(el);
         });
 
-        // Animation counters for statistics
-        const animateCounters = () => {
-            const counters = document.querySelectorAll('.stat-number');
-            
-            counters.forEach(counter => {
-                const target = parseInt(counter.getAttribute('data-target'));
-                const duration = 2000; // 2 seconds
-                const step = target / (duration / 16); // 60 FPS
-                let current = 0;
-                
-                const updateCounter = () => {
-                    if (current < target) {
-                        current += step;
-                        counter.textContent = Math.floor(current);
-                        requestAnimationFrame(updateCounter);
-                    } else {
-                        counter.textContent = target;
-                    }
-                };
-                
-                updateCounter();
-            });
-        };
-
-        // Intersection Observer for stats animation
-        const statsObserver = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    animateCounters();
-                    statsObserver.unobserve(entry.target);
-                }
-            });
-        }, { threshold: 0.5 });
-
-        // Observe stats section
-        const statsSection = document.querySelector('.stats-section');
-        if (statsSection) {
-            statsObserver.observe(statsSection);
-        }
+        // Load Feather Icons
+        feather.replace();
     </script>
 </body>
 </html>
