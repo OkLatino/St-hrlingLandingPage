@@ -47,6 +47,10 @@
             background: #000;
         }
 
+        /* Nuevo orden de elementos para móviles */
+        .hero-section > .hero-content { order: 2; }
+        .hero-section > .hero-video-container { order: 1; }
+
         .hero-content {
             padding: 80px 40px;
             display: flex;
@@ -88,6 +92,10 @@
                 grid-template-columns: 1fr 1fr;
                 min-height: 100vh;
             }
+
+            /* Restaura el orden en escritorio */
+            .hero-section > .hero-content { order: 1; }
+            .hero-section > .hero-video-container { order: 2; }
 
             .hero-content {
                 background: linear-gradient(135deg, #000 0%, #1a1a1a 100%);
@@ -641,11 +649,13 @@
         /* Responsive */
         @media (max-width: 768px) {
             .hero-title {
-                font-size: 2.8rem;
+                font-size: 2.2rem; /* Título más pequeño para móviles */
+                letter-spacing: 1px;
             }
             
             .hero-subtitle {
-                font-size: 1.2rem;
+                font-size: 1rem; /* Subtítulo más pequeño para móviles */
+                max-width: 90%;
             }
 
             .hero-content {
@@ -704,18 +714,19 @@
 <body>
     <!-- Hero Section with split layout on desktop -->
     <section class="hero-section">
+        <!-- El video ahora se muestra primero en móviles debido al orden de los elementos -->
+        <div class="hero-video-container">
+            <!-- Tu video original con la ruta intacta -->
+            <video id="heroVideo" muted playsinline preload="metadata" src="assets\stuhrlingHero1.mp4">
+                <!-- Fallback para navegadores que no soporten el video -->
+            </video>
+        </div>
         <div class="hero-content">
             <div class="logo">STÜHRLING</div>
             <h1 class="hero-title">Campaña de Influencers</h1>
             <p class="hero-subtitle">¿Eres creador de contenido apasionado por el estilo?<br>
             Stührling busca influencers con presencia, carisma y buen gusto para colaborar con una marca de relojes de lujo accesible.</p>
             <a href="#formulario" class="cta-button">Enviar Solicitud</a>
-        </div>
-        <div class="hero-video-container">
-            <!-- Tu video original con la ruta intacta -->
-            <video id="heroVideo" muted playsinline preload="metadata" src="assets\stuhrlingHero1.mp4">
-                <!-- Fallback para navegadores que no soporten el video -->
-            </video>
         </div>
     </section>
 
@@ -1025,8 +1036,8 @@
             // La duración del video se usa para determinar el punto de reproducción.
             const videoDuration = heroVideo.duration;
             // Se ha ajustado este valor para que el video se reproduzca más rápido.
-            // Ahora se utilizan los primeros 8 segundos del video para el scrubbing.
-            const maxVideoTime = Math.min(videoDuration, 26);
+            // Ahora se utilizan los primeros 2 segundos del video para el scrubbing.
+            const maxVideoTime = Math.min(videoDuration, 2);
             
             // Se actualiza el tiempo de reproducción del video.
             heroVideo.currentTime = scrollProgress * maxVideoTime;
@@ -1035,7 +1046,7 @@
         // Se inicializa el video una vez que sus metadatos (duración, etc.) están cargados.
         heroVideo.addEventListener('loadedmetadata', function() {
             videoInitialized = true;
-            heroVideo.currentTime = 0; // Se asegura de que el video empiece en el segundo 0.
+            heroVideo.currentTime = 1; // Se asegura de que el video empiece en el segundo 0.
             console.log('Video inicializado. Duración:', heroVideo.duration);
         });
 
@@ -1047,7 +1058,7 @@
             if (scrollTimeout) {
                 clearTimeout(scrollTimeout);
             }
-            scrollTimeout = setTimeout(syncVideoWithScroll, 16); // Aproximadamente 60fps.
+            scrollTimeout = setTimeout(syncVideoWithScroll, 30); // Aproximadamente 60fps.
         });
 
         // Se llama a la función también al cargar la página para sincronizar la posición inicial.
@@ -1086,7 +1097,7 @@
 
         // Animation on scroll
         const observerOptions = {
-            threshold: 0.8,
+            threshold: 1.1,
             rootMargin: '0px 0px -50px 0px'
         };
 
