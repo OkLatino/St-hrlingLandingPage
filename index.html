@@ -327,12 +327,22 @@
             color: #fff;
         }
 
+        /* Se ajusta el grid para dispositivos móviles y escritorio */
         .criterios-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 40px;
             margin-top: 60px;
         }
+
+        /* Regla específica para desktop para una cuadrícula de 2x2 */
+        @media (min-width: 1024px) {
+            .criterios-grid {
+                grid-template-columns: repeat(2, 1fr);
+                grid-auto-rows: 1fr; /* Mantiene la altura de los paneles consistente */
+            }
+        }
+
 
         .criterio-card {
             background: rgba(255,255,255,0.05);
@@ -343,6 +353,9 @@
             text-align: center;
             position: relative;
             overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
         }
 
         .criterio-card::before {
@@ -702,11 +715,21 @@
             }
             
             .criterios-grid {
+                /* Nuevo estilo para los 4 paneles en dispositivos móviles */
                 grid-template-columns: 1fr;
+                gap: 20px;
             }
-            
-            .benefits-grid {
-                grid-template-columns: 1fr;
+
+            .criterio-card {
+                padding: 30px 20px;
+            }
+        }
+        
+        @media (min-width: 480px) and (max-width: 768px) {
+            .criterios-grid {
+                /* Layout de 2 columnas en móviles más grandes */
+                grid-template-columns: 1fr 1fr;
+                gap: 20px;
             }
         }
 
@@ -826,7 +849,8 @@
     <!-- Benefits Section -->
     <section class="benefits">
         <div class="container">
-            <h2 class="section-title">Beneficios de la Colaboración</h2>
+            <!-- Título de la sección de beneficios modificado -->
+            <h2 class="section-title">ETAPA 2 BENEFICIOS</h2>
             <div class="benefits-grid">
                 <div class="benefit-card">
                     <!-- Icono de pago reemplazado con SVG -->
@@ -845,9 +869,9 @@
                 <div class="benefit-card">
                     <!-- Icono de regalo reemplazado con SVG -->
                     <svg class="benefit-icon" xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-gift"><polyline points="20 12 20 22 4 22 4 12"></polyline><rect x="2" y="7" width="20" height="5"></rect><line x1="12" y1="22" x2="12" y2="7"></line><path d="M12 7H7.5a2.5 2.5 0 0 1 0-5C11 2 12 7 12 7z"></path><path d="M12 7h4.5a2.5 2.5 0 0 0 0-5C13 2 12 7 12 7z"></path></svg>
-                    <h3 class="benefit-title">Producto Premium</h3>
-                    <div class="benefit-amount">Reloj Gratis</div>
-                    <p class="benefit-description">Para influencers +100k seguidores con métricas consistentes</p>
+                    <h3 class="benefit-title">Reloj de Cortesía</h3>
+                    <div class="benefit-amount">Reloj de Cortesía</div>
+                    <p class="benefit-description">Habrá beneficios para los creadores que lleguen a esta etapa.</p>
                 </div>
             </div>
         </div>
@@ -874,11 +898,9 @@
                 </div>
                 
                 <div class="incentivo-especial">
-                    <h3 class="incentivo-title">Incentivo Especial</h3>
-                    <p>Para creadores con más de 100k seguidores: Si sus métricas son consistentes (buen promedio de vistas y engagement), 
-                    se evaluará enviarles un reloj Stührling sin costo como parte de la colaboración.</p>
-                    <br>
-                    <p><strong>Estos influencers serán considerados embajadores de marca con futuras oportunidades exclusivas.</strong></p>
+                    <!-- Nuevo texto para el incentivo especial -->
+                    <h3 class="incentivo-title">ETAPA 2</h3>
+                    <p>PARA LOS CREADORES QUE LLEGUEN A ENTRAR A ESTA ETAPA CUMPLIENDO CON LOS REQUISITOS SERÁN CONSIDERADOS EMBAJADORES DE NUESTRA MARCA CON POSIBILIDAD DE RECIBIR UN RELOJ PARA UNA MAYOR CALIDAD Y ELABORACION DE VIDEO</p>
                 </div>
             </div>
         </div>
@@ -946,6 +968,7 @@
                             </label>
                             <select id="seguidores" name="seguidores" class="form-select" required>
                                 <option value="">Selecciona el rango</option>
+                                <option value="menor-20k">Menor que 20k</option>
                                 <option value="20k-50k">20k - 50k</option>
                                 <option value="50k-100k">50k - 100k</option>
                                 <option value="100k-500k">100k - 500k</option>
