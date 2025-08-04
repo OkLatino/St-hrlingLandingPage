@@ -409,6 +409,14 @@
             margin-top: 60px;
         }
 
+        /* Se ajusta el grid para que los paneles de beneficios se vean en una fila en desktop */
+        @media (min-width: 1024px) {
+            .benefits-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+
         .benefit-card {
             background: #fff;
             padding: 50px 40px;
@@ -463,6 +471,15 @@
             color: #666;
             line-height: 1.7;
             font-size: 1.1rem;
+        }
+        
+        .incentivo-especial .incentivo-title {
+            font-size: 2rem;
+            margin-bottom: 10px;
+        }
+        .incentivo-especial p {
+            font-size: 1.1rem;
+            line-height: 1.6;
         }
 
         /* Form Section */
@@ -576,7 +593,7 @@
         .submit-button:hover {
             background: linear-gradient(45deg, var(--stuhrling-dark-orange), var(--stuhrling-orange));
             transform: translateY(-3px);
-            box-shadow: 0 15px 40px rgba(255, 107, 53, 0.4);
+            box-shadow: 15px 40px rgba(255, 107, 53, 0.4);
         }
 
         /* Esquema de Pago Section */
@@ -851,7 +868,7 @@
     <section class="benefits">
         <div class="container">
             <!-- Título de la sección de beneficios modificado -->
-            <h2 class="section-title">ETAPA 2 BENEFICIOS</h2>
+            <h2 class="section-title">ETAPA 1 BENEFICIOS</h2>
             <div class="benefits-grid">
                 <div class="benefit-card">
                     <!-- Icono de pago reemplazado con SVG -->
@@ -867,13 +884,18 @@
                     <div class="benefit-amount">+$800 MXN</div>
                     <p class="benefit-description">Si el video alcanza nuestra meta orgánica de vistas (Total: $1,000 MXN)</p>
                 </div>
-                <div class="benefit-card">
-                    <!-- Icono de regalo reemplazado con SVG -->
-                    <svg class="benefit-icon" xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-gift"><polyline points="20 12 20 22 4 22 4 12"></polyline><rect x="2" y="7" width="20" height="5"></rect><line x1="12" y1="22" x2="12" y2="7"></line><path d="M12 7H7.5a2.5 2.5 0 0 1 0-5C11 2 12 7 12 7z"></path><path d="M12 7h4.5a2.5 2.5 0 0 0 0-5C13 2 12 7 12 7z"></path></svg>
-                    <h3 class="benefit-title">Reloj de Cortesía</h3>
-                    <div class="benefit-amount">Reloj de Cortesía</div>
-                    <p class="benefit-description">Habrá benefecios para los creadores que lleguen a esta etapa.</p>
-                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Nueva sección de la Etapa 2 -->
+    <section class="pago-section">
+        <div class="container">
+            <div class="incentivo-especial">
+                <svg class="incentivo-icon" xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-gift"><polyline points="20 12 20 22 4 22 4 12"></polyline><rect x="2" y="7" width="20" height="5"></rect><line x1="12" y1="22" x2="12" y2="7"></line><path d="M12 7H7.5a2.5 2.5 0 0 1 0-5C11 2 12 7 12 7z"></path><path d="M12 7h4.5a2.5 2.5 0 0 0 0-5C13 2 12 7 12 7z"></path></svg>
+                <!-- Nuevo texto para el incentivo especial -->
+                <h3 class="incentivo-title">ETAPA 2</h3>
+                <p>PARA LOS CREADORES QUE LLEGUEN A ENTRAR A ESTA ETAPA CUMPLIENDO CON LOS REQUISITOS SERÁN CONSIDERADOS EMBAJADORES DE NUESTRA MARCA CON POSIBILIDAD DE RECIBIR UN RELOJ PARA UNA MAYOR CALIDAD Y ELABORACION DE VIDEO</p>
             </div>
         </div>
     </section>
@@ -896,12 +918,6 @@
                         <span class="pago-concepto"><strong>Total posible por video</strong></span>
                         <span class="pago-monto"><strong>$1,000 MXN</strong></span>
                     </div>
-                </div>
-                
-                <div class="incentivo-especial">
-                    <!-- Nuevo texto para el incentivo especial -->
-                    <h3 class="incentivo-title">ETAPA 2</h3>
-                    <p>PARA LOS CREADORES QUE LLEGUEN A ENTRAR A ESTA ETAPA CUMPLIENDO CON LOS REQUISITOS SERÁN CONSIDERADOS EMBAJADORES DE NUESTRA MARCA CON POSIBILIDAD DE RECIBIR UN RELOJ PARA UNA MAYOR CALIDAD Y ELABORACION DE VIDEO</p>
                 </div>
             </div>
         </div>
@@ -934,7 +950,7 @@
                         <div class="form-group">
                             <label for="telefono" class="form-label">
                                 <!-- Ícono de teléfono actualizado -->
-                                <svg class="social-logo" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M10.0376 5.31617L10.6866 6.4791C11.2723 7.52858 11.0372 8.90532 10.1147 9.8278C10.1147 9.8278 10.1147 9.8278 10.1147 9.8278C10.1146 9.82792 8.99588 10.9468 11.0245 12.9755C13.0525 15.0035 14.1714 13.8861 14.1722 13.8853C14.1722 13.8853 14.1722 13.8853 14.1722 13.8853C15.0947 12.9628 16.4714 12.7277 17.5209 13.3134L18.6838 13.9624C20.2686 14.8468 20.4557 17.0692 19.0628 18.4622C18.2258 19.2992 17.2004 19.9505 16.0669 19.9934C14.1588 20.0658 10.9183 19.5829 7.6677 16.3323C4.41713 13.0817 3.93421 9.84122 4.00655 7.93309C4.04952 6.7996 4.7008 5.77423 5.53781 4.93723C6.93076 3.54428 9.15317 3.73144 10.0376 5.31617Z" fill="currentColor"></path></svg>
+                                <svg class="social-logo" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M10.0376 5.31617L10.6866 6.4791C11.2723 7.52858 11.0372 8.90532 10.1147 9.8278C10.1147 9.8278 10.1147 9.8278 10.1147 9.8278C10.1146 9.82792 8.99588 10.9468 11.0245 12.9755C13.0525 15.0035 14.1714 13.8861 14.1722 13.8853C14.1722 13.8853 14.1722 13.8853 14.1722 13.8853C15.0947 12.9628 16.4714 12.7277 17.5209 13.3134L18.6838 13.9624C20.2686 14.8468 20.4557 17.0692 19.0628 18.4622C18.2258 19.2992 17.2004 19.9505 16.0669 19.9934C14.1588 20.0658 10.9183 19.5829 7.6677 16.3323C4.41713 13.0817 3.93421 9.84122 4.00655 7.93309C4.04952 6.7996 4.7008 5.77423 5.53781 4.93723C6.93076 3.54428 9.15317 3.73144 10.0376 5.31617Z" fill="currentColor"></path> </g></svg>
                                 Teléfono
                             </label>
                             <input type="tel" id="telefono" name="telefono" class="form-input">
@@ -992,7 +1008,7 @@
                             <svg class="social-logo" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-instagram"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
                             URL de Instagram *
                         </label>
-                        <input type="url" id="perfil_instagram" name="perfil_instagram" class="form-input" placeholder="https://instagram.com/tu_usuario" required>
+                        <input type="url" id="perfil_instagram" name="perfil_instagram" class="form-input" required>
                     </div>
 
                     <div class="form-group">
