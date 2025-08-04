@@ -717,7 +717,7 @@
         <!-- El video ahora se muestra primero en móviles debido al orden de los elementos -->
         <div class="hero-video-container">
             <!-- Tu video original con la ruta intacta -->
-            <video id="heroVideo" muted playsinline preload="metadata" src="assets\stuhrlingHero1.mp4">
+            <video id="heroVideo" muted playsinline preload="metadata" autoplay loop src="assets\stuhrlingHero1.mp4">
                 <!-- Fallback para navegadores que no soporten el video -->
             </video>
         </div>
@@ -1017,54 +1017,7 @@
     </section>
 
     <script>
-        // Esta es la sección de JavaScript que controla la funcionalidad de video sincronizado con scroll.
-        const heroVideo = document.getElementById('heroVideo');
-        let videoInitialized = false;
-
-        // Función principal para sincronizar el tiempo del video con la posición del scroll.
-        function syncVideoWithScroll() {
-            // Se verifica que el elemento de video y su duración estén disponibles.
-            if (!heroVideo || !heroVideo.duration) return;
-
-            // Se calcula la posición del scroll actual.
-            const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-            const documentHeight = document.documentElement.scrollHeight - window.innerHeight;
-            
-            // Se mapea la posición de scroll a un valor de 0 a 1.
-            const scrollProgress = Math.min(scrollTop / documentHeight, 1);
-
-            // La duración del video se usa para determinar el punto de reproducción.
-            const videoDuration = heroVideo.duration;
-            // Se ha ajustado este valor para que el video se reproduzca más rápido.
-            // Ahora se utilizan los primeros 2 segundos del video para el scrubbing.
-            const maxVideoTime = Math.min(videoDuration, 2);
-            
-            // Se actualiza el tiempo de reproducción del video.
-            heroVideo.currentTime = scrollProgress * maxVideoTime;
-        }
-
-        // Se inicializa el video una vez que sus metadatos (duración, etc.) están cargados.
-        heroVideo.addEventListener('loadedmetadata', function() {
-            videoInitialized = true;
-            heroVideo.currentTime = 1; // Se asegura de que el video empiece en el segundo 0.
-            console.log('Video inicializado. Duración:', heroVideo.duration);
-        });
-
-        // Se escucha el evento de scroll en la ventana.
-        // Se usa un "throttling" con setTimeout para mejorar el rendimiento,
-        // evitando que la función se ejecute demasiadas veces seguidas.
-        let scrollTimeout;
-        window.addEventListener('scroll', function() {
-            if (scrollTimeout) {
-                clearTimeout(scrollTimeout);
-            }
-            scrollTimeout = setTimeout(syncVideoWithScroll, 30); // Aproximadamente 60fps.
-        });
-
-        // Se llama a la función también al cargar la página para sincronizar la posición inicial.
-        window.addEventListener('load', syncVideoWithScroll);
-
-        // ===== RESTO DEL CÓDIGO =====
+        // No hay código de "scrub video" aquí, solo el JavaScript funcional que no afecta el video.
         
         // Smooth scrolling for anchor links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
@@ -1097,7 +1050,7 @@
 
         // Animation on scroll
         const observerOptions = {
-            threshold: 1.1,
+            threshold: 0.1,
             rootMargin: '0px 0px -50px 0px'
         };
 
